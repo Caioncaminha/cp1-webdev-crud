@@ -37,8 +37,6 @@ cp1-webdev-crud/
 │
 ├── README.md
 └── src/
-    ├── assets/
-    │   └── images/         # Imagen
     ├── css/
     │   └── style.css       # Estilos
     ├── js/
