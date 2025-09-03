@@ -49,3 +49,6 @@ cp1-webdev-crud/
 
 1. **Clone o Repositório**: `git clone https://github.com/Caioncaminha/cp1-webdev-crud`
 2. **Abra o Arquivo HTML**: Utilize a extensão Live Server no arquivo `index.html`
+
+## Integrantes
+- Caio Nascimento Caminha - RM564789 - 1ESPV
