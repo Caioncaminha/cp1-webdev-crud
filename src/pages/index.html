@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CP1 - WebDev - Crud</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Gestão de Jogadoras</h1>
+            <p class="subtitle">Sistema de Cadastro - Futebol Feminino</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats-summary" id="statsSummary">
+            <div class="summary-item">
+                <div class="summary-value" id="totalPlayers">0</div>
+                <div class="summary-label">Total de Jogadoras</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-value" id="totalGoals">0</div>
+                <div class="summary-label">Gols Totais</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-value" id="totalAssists">0</div>
+                <div class="summary-label">Assistências Totais</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-value" id="totalFavorites">0</div>
+                <div class="summary-label">Favoritas</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="search-filter-container">
+                <div class="input-group">
+                    <label for="searchInput">🔍 Buscar por nome ou posição</label>
+                    <input type="text" id="searchInput" placeholder="Digite para buscar...">
+                </div>
+                <div class="input-group">
+                    <label for="teamFilter">🏆 Filtrar por time</label>
+                    <select id="teamFilter">
+                        <option value="">Todos os times</option>
+                    </select>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="openAddModal()">
+                    + Nova Jogadora
+                </button>
+                <button class="btn btn-secondary" onclick="sortPlayers('nome')">
+                    Ordenar por Nome
+                </button>
+                <button class="btn btn-secondary" onclick="sortPlayers('posicao')">
+                    Ordenar por Posição
+                </button>
+                <button class="btn btn-warning" onclick="showFavoritesOnly()">
+                    Apenas Favoritas
+                </button>
+            </div>
+        </div>
+
+        <div class="players-grid" id="playersGrid">
+            <!-- Cards serão inseridos aqui -->
+        </div>
+
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <div class="empty-state-icon">🏃‍♀️</div>
+            <div class="empty-state-text">Nenhuma jogadora encontrada</div>
+        </div>
+    </div>
+
+    <!-- Modal de Adicionar/Editar -->
+    <div id="playerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Adicionar Jogadora</h2>
+            </div>
+            <form id="playerForm" onsubmit="savePlayer(event)">
+                <div class="form-group">
+                    <label for="playerName">Nome</label>
+                    <input type="text" id="playerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="playerPosition">Posição</label>
+                    <select id="playerPosition" required>
+                        <option value="">Selecione...</option>
+                        <option value="Goleira">Goleira</option>
+                        <option value="Zagueira">Zagueira</option>
+                        <option value="Lateral">Lateral</option>
+                        <option value="Meio-campo">Meio-campo</option>
+                        <option value="Atacante">Atacante</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="playerClub">Clube</label>
+                    <input type="text" id="playerClub" required>
+                </div>
+                <div class="form-group">
+                    <label for="playerPhoto">URL da Foto</label>
+                    <input type="text" id="playerPhoto" placeholder="https://exemplo.com/foto.jpg - Prefira fotos 3x4">
+                </div>
+                <div class="form-group">
+                    <label for="playerGoals">Gols</label>
+                    <input type="number" id="playerGoals" min="0" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="playerAssists">Assistências</label>
+                    <input type="number" id="playerAssists" min="0" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="playerGames">Jogos</label>
+                    <input type="number" id="playerGames" min="0" value="0">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">✅ Salvar</button>
+                    <button type="button" class="btn btn-danger" onclick="closeModal()">❌ Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+
+</body>
+
+</html>
